@@ -1,8 +1,9 @@
 <script>
   export let data = []; // Modal은 데이터가 하나 였는데 여기는 배열이라서 ??? 아니면 기본값인가?
   export let isModal = false;
-  export let selectedMovie = 0;
+  // export let selectedMovie = 0;
   export let handleLike;
+  export let handleMovieNumber;
   
 </script>
 
@@ -21,7 +22,8 @@
         <button 
           on:click={()=>{
             isModal = true; 
-            selectedMovie = i;
+            // selectedMovie = i;
+            handleMovieNumber(i);
             console.log('Selected movie: ' , data[i]);
           }} 
           class="btn btn-primary"

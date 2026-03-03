@@ -14,10 +14,19 @@ import Movies from './lib/components/Movies.svelte';
   const closeModal = () => {
     isModal = false;
   }
+  
+  const handleMovieNumber = (i) => {
+    selectedMovie = 1;
+  }
 </script>
 
 <Navbar />
-<Movies {data} bind:isModal bind:selectedMovie {handleLike}/>
+<Movies 
+  {data} 
+  bind:isModal 
+  {handleMovieNumber}
+  {handleLike}
+/>
 
 <!-- props : 요소에 속성을 정의하여 값을 전달화는 방식 
       <요소명 props이름 = {전달값 | 변수명} 

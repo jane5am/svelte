@@ -9,6 +9,10 @@ import Modal from './lib/components/Modal.svelte';
   
   let isModal = false; 
   let selectedMovie = 0;
+  
+  const closeModal = () => {
+    isModal = false;
+  }
 </script>
 
 <Navbar />
@@ -39,8 +43,15 @@ import Modal from './lib/components/Modal.svelte';
 
 <!-- props : 요소에 속성을 정의하여 값을 전달화는 방식 
       <요소명 props이름 = {전달값 | 변수명} -->
+
 {#if isModal}
-  <Modal data={data} selectedMovie={selectedMovie}/>
+  <Modal 
+    data={data} 
+    selectedMovie={selectedMovie} 
+    // bind:isModal={isModal} //  bind : 양방향으로 사용할 수 있는 방식 
+                           // 여러 컴포넌트가 공유하는 데이터는 이 방식 위험!!! 
+    {closeModal} // 축약형
+  />
 {/if}
 
 <style>

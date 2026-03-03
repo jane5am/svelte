@@ -1,13 +1,18 @@
 <script>
   export let data; // props로 내린 영화 데이터를 받는다  
   export let selectedMovie;
+  export let closeModal;
 </script>
 
 <div class="modal">
   <div class="inner">
     <h3>{data[selectedMovie].title}</h3>
     <p>{@html data[selectedMovie].story}</p>
-    <button on:click={()=>{isModal=false;}} class="bth-close">닫기</button>
+    <button 
+      // on:click={()=>{isModal=false;}} 
+      on:click={closeModal} 
+      class="bth-close"
+    >닫기</button>
   </div>  
 </div>
 

@@ -1,8 +1,9 @@
 <script>
-import data  from './lib/movies'; 
-import Navbar from './lib/components/Navarbar.svelte';
-import Modal from './lib/components/Modal.svelte';
-import Movies from './lib/components/Movies.svelte';
+  import { fly, fade } from 'svelte/transition';
+  import data  from './lib/movies'; 
+  import Navbar from './lib/components/Navarbar.svelte';
+  import Modal from './lib/components/Modal.svelte';
+  import Movies from './lib/components/Movies.svelte';
 
   const handleLike = (i) => {
     data[i].likeCount += 1;
@@ -26,17 +27,25 @@ import Movies from './lib/components/Movies.svelte';
   }
 </script>
 
-<Navbar />
-<div class={isEvent ? 'event show' : 'event'}> <!-- class 명을 동적으로 사용 -->
-  <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
-  <button on:click={closeEvent} >X</button>
-</div>
-<Movies 
-  {data} 
-  bind:isModal 
-  {handleMovieNumber}
-  {handleLike}
-/>
+  <Navbar />
+<!-- <div class={isEvent ? 'event show' : 'event'}> class 명을 동적으로 사용 -->
+    {#if isEvent}
+    <div 
+      class='event show' 
+      in:fly={{ y: -400, duration: 1000}}
+      out:fade
+    >
+      <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
+      <button on:click={closeEvent} >X</button>
+    </div>
+    {/if}
+    <button on:click={()=> isEvent = true}>이벤트창 나타나기</button>
+  <Movies 
+    {data} 
+    bind:isModal 
+    {handleMovieNumber}
+    {handleLike}
+  />
 
 <!-- props : 요소에 속성을 정의하여 값을 전달화는 방식 
       <요소명 props이름 = {전달값 | 변수명} 

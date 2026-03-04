@@ -1,9 +1,8 @@
 <script>
-
+  import Home from "./lib/components/Home.svelte";
 </script>
 
-<main>
-</main>
+<Home />
 
 <style>
 

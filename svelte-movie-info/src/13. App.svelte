@@ -53,21 +53,24 @@
   let alertText = "";
   let eventIndex = 0; // 이벤트 텍스트 인덱스
   let intervalEventText;
-  onMount(()=>{
-    // 일정 시간 경과 후 eventIndex를 1 증가
-    intervalEventText = setInterval(()=>{
-      eventIndex += 1;
-      if(eventIndex >= eventText.length){
-        eventIndex = 0;
-      }
-    }, 3000)
-  });
   
-  onDestroy(()=>{
-    // 이벤트 인터벌 제거
-    clearInterval(intervalEventText);
-  })
+  // 1. 라이프 사이클 사용하는 방법
+  // onMount(()=>{
+  //   // 일정 시간 경과 후 eventIndex를 1 증가
+  //   intervalEventText = setInterval(()=>{
+  //     eventIndex += 1;
+  //     if(eventIndex >= eventText.length){
+  //       eventIndex = 0;
+  //     }
+  //   }, 3000)
+  // });
   
+  // onDestroy(()=>{
+  //   // 이벤트 인터벌 제거
+  //   clearInterval(intervalEventText);
+  // })
+  
+  // 2. $: 사용하는 방법
   $: {
      // 이벤트 인터벌 제거
     clearInterval(intervalEventText);

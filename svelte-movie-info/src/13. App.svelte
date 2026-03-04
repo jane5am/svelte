@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onDestroy, onMount } from 'svelte';
   import data  from './lib/movies'; 
   import Navbar from './lib/components/Navarbar.svelte';
   import Modal from './lib/components/Modal.svelte';
@@ -52,13 +52,33 @@
   
   let alertText = "";
   let eventIndex = 0; // 이벤트 텍스트 인덱스
-  
+  let intervalEventText;
   onMount(()=>{
     // 일정 시간 경과 후 eventIndex를 1 증가
-    setTimeout(()=>{
+    intervalEventText = setInterval(()=>{
       eventIndex += 1;
+      if(eventIndex >= eventText.length){
+        eventIndex = 0;
+      }
     }, 3000)
   });
+  
+  onDestroy(()=>{
+    // 이벤트 인터벌 제거
+    clearInterval(intervalEventText);
+  })
+  
+  $: {
+     // 이벤트 인터벌 제거
+    clearInterval(intervalEventText);
+     // 일정 시간 경과 후 eventIndex를 1 증가
+    intervalEventText = setInterval(()=>{
+      eventIndex += 1;
+      if(eventIndex >= eventText.length){
+        eventIndex = 0;
+      }
+    }, 3000)
+  }
 </script>
 
   <Navbar />

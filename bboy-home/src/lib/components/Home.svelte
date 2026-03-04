@@ -15,5 +15,6 @@
     aspect-ratio: 2.35/1;
     object-fit: cover;
     object-position: center;
-  }
+    display: block;
+  } 
 </style>

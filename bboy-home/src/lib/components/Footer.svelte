@@ -6,5 +6,6 @@
   footer {
     text-align: center;
     margin-top: 50px;
+    color: #444;
   }  
 </style>

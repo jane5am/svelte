@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import data  from './lib/movies'; 
   import Navbar from './lib/components/Navarbar.svelte';
   import Modal from './lib/components/Modal.svelte';
@@ -6,6 +7,11 @@
   import Event from './lib/components/Event.svelte';
   import SearchBar from './lib/components/SearchBar.svelte';
   
+  const eventText = [
+    "영화 정보 업데이트",
+    "신규 영화 추가",
+    "이벤트 진행중"
+  ]
   // data 사본 추가
   let data_temp = [...data]; // 복사본
                               // 그냥 data로 넣으면 같은 참조주소를 보고 있어서 복사가 안됨
@@ -44,14 +50,22 @@
     isEvent = false;
   }
   
-    let alertText = "";
+  let alertText = "";
+  let eventIndex = 0; // 이벤트 텍스트 인덱스
+  
+  onMount(()=>{
+    // 일정 시간 경과 후 eventIndex를 1 증가
+    setTimeout(()=>{
+      eventIndex += 1;
+    }, 3000)
+  });
 </script>
 
   <Navbar />
 
 <!-- <div class={isEvent ? 'event show' : 'event'}> class 명을 동적으로 사용 -->
   {#if isEvent}
-    <Event {closeEvent} />
+    <Event {closeEvent} {eventText} {eventIndex}/>
   {/if}
   <SearchBar {data} bind:data_temp bind:alertText/>
   <!-- 전체 보기 버튼 추가 -->

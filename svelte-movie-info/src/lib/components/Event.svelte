@@ -1,6 +1,8 @@
 <script>
   import { fly, fade } from 'svelte/transition';
   export let closeEvent;
+  export let eventText;
+  export let eventIndex;
 </script>
 
 <main>
@@ -9,7 +11,7 @@
     in:fly={{ y: -400, duration: 1000}}
     out:fade
   >
-    <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
+    <p>{eventText[eventIndex]}</p>
     <button on:click={closeEvent} >X</button>
   </div>
 </main>

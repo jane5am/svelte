@@ -30,6 +30,8 @@
   const closeEvent = () => {
     isEvent = false;
   }
+  
+    let alertText = "";
 </script>
 
   <Navbar />
@@ -38,7 +40,16 @@
   {#if isEvent}
     <Event {closeEvent} />
   {/if}
-  <SearchBar {data} bind:data_temp/>
+  <SearchBar {data} bind:data_temp bind:alertText/>
+  <!-- 전체 보기 버튼 추가 -->
+  <div class="container">
+    <button on:click={()=>{
+        data_temp = [...data]; // 데이터 복사본으로 초기화
+        alertText = "";
+      }}>전체보기
+    </button>
+  </div>
+  
   <Movies 
     {data_temp} 
     bind:isModal 
@@ -59,3 +70,9 @@
     {closeModal} // 축약형
   />
 {/if}
+
+<style>
+  .container {
+    text-align: center;
+  }
+</style>

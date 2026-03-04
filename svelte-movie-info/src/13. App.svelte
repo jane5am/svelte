@@ -34,7 +34,7 @@
   {#if isEvent}
     <Event {closeEvent} />
   {/if}
-  <SearchBar />
+  <SearchBar {data} />
   <Movies 
     {data} 
     bind:isModal 

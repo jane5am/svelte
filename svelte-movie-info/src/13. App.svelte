@@ -6,6 +6,10 @@
   import Event from './lib/components/Event.svelte';
   import SearchBar from './lib/components/SearchBar.svelte';
   
+  // data 사본 추가
+  let data_temp = [...data]; // 복사본
+                              // 그냥 data로 넣으면 같은 참조주소를 보고 있어서 복사가 안됨
+  
   const handleLike = (i) => {
     data[i].likeCount += 1;
   }
@@ -34,9 +38,9 @@
   {#if isEvent}
     <Event {closeEvent} />
   {/if}
-  <SearchBar {data} />
+  <SearchBar {data} bind:data_temp/>
   <Movies 
-    {data} 
+    {data_temp} 
     bind:isModal 
     {handleMovieNumber}
     {handleLike}

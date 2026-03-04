@@ -10,9 +10,22 @@
   let data_temp = [...data]; // 복사본
                               // 그냥 data로 넣으면 같은 참조주소를 보고 있어서 복사가 안됨
   
-  const handleLike = (i) => {
-    data[i].likeCount += 1;
-  }
+  const handleLike = (id) => {
+    // data[i].likeCount += 1;
+    
+    // 원본 data에서 id에 해당하는 like를 1 증가
+    data.map(movie => {
+      if (movie.id === id){
+        movie.likeCount += 1;
+      }
+    });
+    
+    //data_temp = [...data];
+    // data_temp 있는 내용만 필터링해서 복사
+    data_temp = data.filter(movie =>{
+      return data_temp.includes(movie);
+    })
+  };
   
   let isModal = false; 
   let selectedMovie = 0;

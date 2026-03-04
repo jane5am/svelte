@@ -1,10 +1,11 @@
 <script>
-  import { fly, fade } from 'svelte/transition';
   import data  from './lib/movies'; 
   import Navbar from './lib/components/Navarbar.svelte';
   import Modal from './lib/components/Modal.svelte';
   import Movies from './lib/components/Movies.svelte';
-
+  import Event from './lib/components/Event.svelte';
+  import SearchBar from './lib/components/SearchBar.svelte';
+  
   const handleLike = (i) => {
     data[i].likeCount += 1;
   }
@@ -28,18 +29,12 @@
 </script>
 
   <Navbar />
+
 <!-- <div class={isEvent ? 'event show' : 'event'}> class 명을 동적으로 사용 -->
-    {#if isEvent}
-    <div 
-      class='event show' 
-      in:fly={{ y: -400, duration: 1000}}
-      out:fade
-    >
-      <p>NETPLIX 강렬한 운명의 드라마, 경기크리처</p>
-      <button on:click={closeEvent} >X</button>
-    </div>
-    {/if}
-    <button on:click={()=> isEvent = true}>이벤트창 나타나기</button>
+  {#if isEvent}
+    <Event {closeEvent} />
+  {/if}
+  <SearchBar />
   <Movies 
     {data} 
     bind:isModal 
@@ -60,41 +55,3 @@
     {closeModal} // 축약형
   />
 {/if}
-
-<style>
-  .event {
-    width: 100%;
-    background: #666;
-    padding: 5px 1em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    margin-bottom: 1em;
-    padding: 10px 20px;
-
-    /* 창이 보이지 않게 */
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.4s;
-  }
-
-  /* 기본: 창이 보이게 */
-  .show {
-    opacity: 1;
-    max-height: 100px;
-  }
-
-  .event button {
-    padding: 2px;
-  }
-
-  .event p, .event button {
-    margin: 0;
-  }
-  .event p {
-    width: 100%;
-  }
-</style>

@@ -5,21 +5,21 @@
   import { getNews } from '../../assets/news';
   // params 가져오기(props로 전달)
   export let params = {}; // 객체로 받는다.
+                          // url로 받는 변수는 자료형이 문자다. 그래서 지금 getNews에 파라미터로 숫자를 보내면 === 같지않음
   console.log(params);
-  console.log(getNews(2));
+  console.log(getNews(Number(params.id)));
+  let news = getNews(Number(params.id));
 </script>
 
 <Header />
 <main  class="container">
   <div class="main-header">
-    <h2>서울 비보이 페스티벌</h2>
-    <p class="date">2022-10-11</p>
-    <img src="images/detail_img01.jpg" alt=""/>
+    <h2>{news.title}</h2>
+    <p class="date">{news.date}</p>
+    <img src={news.imgUrl} alt={news.title}/>
   </div>
   <article>
-    <p>올해 2회차인 2024 서울비보이페스티벌은 초여름 한강을 배경으로 펼쳐지는 열정적인 브레이킹 문화를 온몸으로 체험할 수 있는 축제입니다.
-      
-      지난 10년간 ‘서울시 대표 비보이단’ 공연과 교육, 작품제작으로 브레이킹 문화를 지원해 온 서울문화재단과 함께 2022년부터 페스티벌을 통해 스트리트 문화의 자유로움과 힘찬 에너지를 시민들에게 전달하고 있습니다. 국내 및 해외 우수한 힙합 아티스트들의 멋진 공연과 뜨거운 배틀의 열기, 다채로운 즐길거리가 마련되어 있습니다.</p>
+    {@html news.desc}
   </article>
 </main>
 <Footer />

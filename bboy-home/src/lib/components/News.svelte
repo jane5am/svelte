@@ -9,7 +9,7 @@
   <h2>비보이 브라더스 활동</h2>
   <div class="news">
     {#each news as item}
-      <a class="news-item" href="/#/detail">
+      <a class="news-item" href={'/#/detail/' + item.id}>
         <img src={item.imgUrl} alt={item.title}>
         <div class="item-text">
           <h3>{item.title}</h3>

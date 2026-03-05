@@ -25,4 +25,10 @@ const news = [
   },
 ];
 
+// news에서 데이터 하나 다져오기
+// 뉴스 데이터에서 id값과 일치하는 뉴스 데이터만 꺼내오는 유틸리티 함수
+export const getNews = (id) => {
+  return news.find(news => news.id === id);
+}
+
 export default news;

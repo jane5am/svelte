@@ -8,18 +8,20 @@
 <main  class="container">
   <h2>비보이 브라더스 활동</h2>
   <div class="news">
-    <div class="news-item">
-      <img src={news[0].imgUrl} alt={news[0].title}>
-      <div class="item-text">
-        <h3>{news[0].title}</h3>
-        <p class="date">{news[0].date}</p>
-        <div class="hashtag">
-          <span>#{news[0].hashtag[0]}</span>
-          <span>#{news[0].hashtag[1]}</span>
-          <span>#{news[0].hashtag[2]}</span>
+    {#each news as item}
+      <div class="news-item">
+        <img src={item.imgUrl} alt={item.title}>
+        <div class="item-text">
+          <h3>{item.title}</h3>
+          <p class="date">{item.date}</p>
+          <div class="hashtag">
+            {#each item.hashtag as tag}
+              <span>#{tag}</span>&nbsp;
+            {/each}
+          </div>
         </div>
       </div>
-    </div>
+    {/each}
   </div>
 </main>
 <Footer />

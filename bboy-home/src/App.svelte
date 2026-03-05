@@ -10,5 +10,5 @@
   '/': Home,
   '/about': About,
   '/news': News,
-  '/detail': Detail
+  '/detail/:id': Detail
 }} />

@@ -1,6 +1,12 @@
 <script>
   import Header from './Header.svelte';
   import Footer from './Footer.svelte';
+  // news 데이터 가져오는 함수
+  import { getNews } from '../../assets/news';
+  // params 가져오기(props로 전달)
+  export let params = {}; // 객체로 받는다.
+  console.log(params);
+  console.log(getNews(2));
 </script>
 
 <Header />
